@@ -5,9 +5,6 @@ from pathlib import Path
 
 class FileManager:
     
-    
-    
-    
     @staticmethod
     def create_subset(source_dir, output_dir, test_list_path, num_images=500):
         """
@@ -75,31 +72,3 @@ class FileManager:
 
             print(f"Test list created at: {test_list_file}")
             print(f"  Total entries: {len(selected_images)}")
-
-
-# if __name__ == '__main__':
-#     parser = argparse.ArgumentParser(
-#         description='Create a random subset of images maintaining GT/T1/T2 structure'
-#     )
-#     parser.add_argument(
-#         'source_dir',
-#         help='Path to source directory containing GT, T1, T2 subdirectories'
-#     )
-#     parser.add_argument(
-#         'output_dir',
-#         help='Path where the subset directory will be created'
-#     )
-#     parser.add_argument(
-#         '-n', '--num-images',
-#         type=int,
-#         default=500,
-#         help='Number of random images to select (default: 500)'
-#     )
-#     parser.add_argument(
-#         '-t', '--test-list',
-#         help='Optional: path to save test list file (one image name per line)'
-#     )
-
-#     args = parser.parse_args()
-
-#     create_subset(args.source_dir, args.output_dir, args.num_images, args.test_list)
