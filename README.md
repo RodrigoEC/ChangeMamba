@@ -365,7 +365,7 @@ Based on peers' questions from issue, here's a quick navigate list of solutions 
 
 ## 📜Reference
 
-If this code or dataset contributes to your research, please kindly consider citing our paper and give this repo ⭐️ :)
+If this code or dataset contributes to your research, please kindly consider citing our paper and give this repo ⭐️ :
 ```
 @article{chen2024changemamba,
   author={Hongruixuan Chen and Jian Song and Chengxi Han and Junshi Xia and Naoto Yokoya},

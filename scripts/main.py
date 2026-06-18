@@ -1,15 +1,13 @@
+from create_image_subset import FileManager
+
+from config import Config
+
 from datetime import datetime
 from pathlib import Path
 import re
 import shutil
 import subprocess
 import sys
-
-from create_image_subset import FileManager
-
-from config import Config
-
-
 
 class MainClient:
 
@@ -19,6 +17,7 @@ class MainClient:
     def _reset_environment(self, path):
         """Remove generated result images to avoid interference between runs."""
         results_dir = Path(path)
+        # deu bom!
 
         if results_dir.exists():
             try:
@@ -72,7 +71,6 @@ class MainClient:
         ]
 
         try:
-            # cleanup_dir()
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
             output = result.stdout + result.stderr
 
@@ -127,42 +125,12 @@ class MainClient:
 
             for i in range(self.config.iterations):
                 
-                self._reset_environment(self.config.result_output_dir)
+                self._reset_environment("../results")
                 self.run_inference(i + 1, self.config.batch_output_dir, self.config.data_list_path)
-
-
-
-# def main():
-#     parser = argparse.ArgumentParser(
-#         description="Run inference multiple times and collect results"
-#     )
-
-#     args = create_args(parser)
-
-#     for _ in range(BATCHES):
-#       cleanup_dir(args.output_dir)
-#       cleanup_dir(args.output_dir)
-#       create_subset(args.source_dir, args.output_dir, args.num_images, args.test_list)
-
 
 if __name__ == "__main__":
     config = Config(
         
     )
     client = MainClient(config=config)
-    # client.run_inference(1, )
     client.run()
-
-# get arguments
-
-
-# create batches
-
-
-# Run inference
-
-
-# Save results
-
-
-# Erase batches created
