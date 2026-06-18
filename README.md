@@ -388,3 +388,13 @@ This project is based on VMamba ([paper](https://arxiv.org/abs/2401.10166), [cod
 ***For any questions, please feel free to [contact us.](mailto:Qschrx@gmail.com)***
 
 [![Star History Chart](https://api.star-history.com/svg?repos=ChenHongruixuan/ChangeMamba&type=Date)](https://star-history.com/#ChenHongruixuan/ChangeMamba&Date)
+
+
+python script/infer_MambaBCD.py \
+  --dataset 'SYSU-CD' \
+  --model_type 'MambaBCD_Tiny' \
+  --test_dataset_path '<dataset_path>/LEVIR-CD+/test' \
+  --test_data_list_path '<dataset_path>/LEVIR-CD+/test_set.txt' \
+  --cfg 'changedetection/configs/vssm1/vssm_tiny_224_0229flex.yaml' \
+  --model_checkpoint_path '<model>.pth' \
+  --cuda False

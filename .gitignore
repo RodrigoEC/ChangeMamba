@@ -58,3 +58,8 @@ saved_models/
 changedetection/*.o*
 slurm-*.out
 core-*
+
+
+changedetection/datasets/data_name_list/SYSU-CD
+changedetection/datasets/data_name_list/*
+venv

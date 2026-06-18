@@ -1,0 +1,41 @@
+{
+  "total_runs": 5,
+  "start_time": "2026-06-18T09:52:01.652404",
+  "end_time": "2026-06-18T09:52:14.773693",
+  "results": [
+    {
+      "run": 1,
+      "timestamp": "2026-06-18T09:52:01.652404",
+      "success": false,
+      "error": "Failed to parse metrics"
+    },
+    {
+      "run": 2,
+      "timestamp": "2026-06-18T09:52:04.889198",
+      "success": false,
+      "error": "Failed to parse metrics"
+    },
+    {
+      "run": 3,
+      "timestamp": "2026-06-18T09:52:08.165808",
+      "success": false,
+      "error": "Failed to parse metrics"
+    },
+    {
+      "run": 4,
+      "timestamp": "2026-06-18T09:52:11.524269",
+      "success": false,
+      "error": "Failed to parse metrics"
+    },
+    {
+      "run": 5,
+      "timestamp": "2026-06-18T09:52:14.773693",
+      "success": false,
+      "error": "Failed to parse metrics"
+    }
+  ],
+  "summary": {
+    "successful_runs": 0,
+    "failed_runs": 5
+  }
+}

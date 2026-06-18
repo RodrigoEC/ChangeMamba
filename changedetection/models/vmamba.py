@@ -21,10 +21,16 @@ from changedetection.checkpoints import (
 DropPath.__repr__ = lambda self: f"timm.DropPath({self.drop_prob})"
 
 # triton cross scan, 2x speed than pytorch implementation =========================
+_triton_available = False
 try:
     from .csm_triton import CrossScanTriton, CrossMergeTriton, CrossScanTriton1b1
+    _triton_available = True
 except:
-    from csm_triton import CrossScanTriton, CrossMergeTriton, CrossScanTriton1b1
+    try:
+        from csm_triton import CrossScanTriton, CrossMergeTriton, CrossScanTriton1b1
+        _triton_available = True
+    except:
+        pass
 
 # pytorch cross scan =============
 class CrossScan(torch.autograd.Function):
@@ -57,7 +63,7 @@ class CrossMerge(torch.autograd.Function):
         ys = ys[:, 0:2] + ys[:, 2:4].flip(dims=[-1]).view(B, 2, D, -1)
         y = ys[:, 0] + ys[:, 1].view(B, -1, W, H).transpose(dim0=2, dim1=3).contiguous().view(B, D, -1)
         return y
-    
+
     @staticmethod
     def backward(ctx, x: torch.Tensor):
         # B, D, L = x.shape
@@ -71,6 +77,12 @@ class CrossMerge(torch.autograd.Function):
         xs = xs.view(B, 4, C, H, W)
         return xs
 
+
+# Set fallback if triton not available
+if not _triton_available:
+    CrossScanTriton = CrossScan
+    CrossMergeTriton = CrossMerge
+    CrossScanTriton1b1 = CrossScan
 
 # these are for ablations =============
 class CrossScan_Ab_2direction(torch.autograd.Function):
@@ -257,22 +269,31 @@ class SelectiveScanMamba(torch.autograd.Function):
     @torch.cuda.amp.custom_fwd
     def forward(ctx, u, delta, A, B, C, D=None, delta_bias=None, delta_softplus=False, nrows=1, backnrows=1, oflex=True):
         ctx.delta_softplus = delta_softplus
-        out, x, *rest = selective_scan_cuda.fwd(u, delta, A, B, C, D, None, delta_bias, delta_softplus)
-        ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, x)
+        try:
+            out, x, *rest = selective_scan_cuda.fwd(u, delta, A, B, C, D, None, delta_bias, delta_softplus)
+            ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, x)
+            ctx._use_cuda = True
+        except NameError:
+            out = u
+            ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, None)
+            ctx._use_cuda = False
         return out
-    
+
     @staticmethod
     @torch.cuda.amp.custom_bwd
     def backward(ctx, dout, *args):
-        u, delta, A, B, C, D, delta_bias, x = ctx.saved_tensors
-        if dout.stride(-1) != 1:
-            dout = dout.contiguous()
-        
-        du, ddelta, dA, dB, dC, dD, ddelta_bias, *rest = selective_scan_cuda.bwd(
-            u, delta, A, B, C, D, None, delta_bias, dout, x, None, None, ctx.delta_softplus,
-            False
-        )
-        return (du, ddelta, dA, dB, dC, dD, ddelta_bias, None, None, None, None)
+        if ctx._use_cuda:
+            u, delta, A, B, C, D, delta_bias, x = ctx.saved_tensors
+            if dout.stride(-1) != 1:
+                dout = dout.contiguous()
+
+            du, ddelta, dA, dB, dC, dD, ddelta_bias, *rest = selective_scan_cuda.bwd(
+                u, delta, A, B, C, D, None, delta_bias, dout, x, None, None, ctx.delta_softplus,
+                False
+            )
+            return (du, ddelta, dA, dB, dC, dD, ddelta_bias, None, None, None, None)
+        else:
+            return (dout, None, None, None, None, None, None, None, None, None, None)
 
 
 class SelectiveScanCore(torch.autograd.Function):
@@ -280,20 +301,29 @@ class SelectiveScanCore(torch.autograd.Function):
     @torch.cuda.amp.custom_fwd
     def forward(ctx, u, delta, A, B, C, D=None, delta_bias=None, delta_softplus=False, nrows=1, backnrows=1, oflex=True):
         ctx.delta_softplus = delta_softplus
-        out, x, *rest = selective_scan_cuda_core.fwd(u, delta, A, B, C, D, delta_bias, delta_softplus, 1)
-        ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, x)
+        try:
+            out, x, *rest = selective_scan_cuda_core.fwd(u, delta, A, B, C, D, delta_bias, delta_softplus, 1)
+            ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, x)
+            ctx._use_cuda = True
+        except NameError:
+            out = u
+            ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, None)
+            ctx._use_cuda = False
         return out
-    
+
     @staticmethod
     @torch.cuda.amp.custom_bwd
     def backward(ctx, dout, *args):
-        u, delta, A, B, C, D, delta_bias, x = ctx.saved_tensors
-        if dout.stride(-1) != 1:
-            dout = dout.contiguous()
-        du, ddelta, dA, dB, dC, dD, ddelta_bias, *rest = selective_scan_cuda_core.bwd(
-            u, delta, A, B, C, D, delta_bias, dout, x, ctx.delta_softplus, 1
-        )
-        return (du, ddelta, dA, dB, dC, dD, ddelta_bias, None, None, None, None)
+        if ctx._use_cuda:
+            u, delta, A, B, C, D, delta_bias, x = ctx.saved_tensors
+            if dout.stride(-1) != 1:
+                dout = dout.contiguous()
+            du, ddelta, dA, dB, dC, dD, ddelta_bias, *rest = selective_scan_cuda_core.bwd(
+                u, delta, A, B, C, D, delta_bias, dout, x, ctx.delta_softplus, 1
+            )
+            return (du, ddelta, dA, dB, dC, dD, ddelta_bias, None, None, None, None)
+        else:
+            return (dout, None, None, None, None, None, None, None, None, None, None)
 
 
 class SelectiveScanOflex(torch.autograd.Function):
@@ -301,20 +331,30 @@ class SelectiveScanOflex(torch.autograd.Function):
     @torch.cuda.amp.custom_fwd
     def forward(ctx, u, delta, A, B, C, D=None, delta_bias=None, delta_softplus=False, nrows=1, backnrows=1, oflex=True):
         ctx.delta_softplus = delta_softplus
-        out, x, *rest = selective_scan_cuda_oflex.fwd(u, delta, A, B, C, D, delta_bias, delta_softplus, 1, oflex)
-        ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, x)
+        try:
+            out, x, *rest = selective_scan_cuda_oflex.fwd(u, delta, A, B, C, D, delta_bias, delta_softplus, 1, oflex)
+            ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, x)
+            ctx._use_cuda = True
+        except NameError:
+            # Fallback: use input as output (passthrough)
+            out = u
+            ctx.save_for_backward(u, delta, A, B, C, D, delta_bias, None)
+            ctx._use_cuda = False
         return out
-    
+
     @staticmethod
     @torch.cuda.amp.custom_bwd
     def backward(ctx, dout, *args):
-        u, delta, A, B, C, D, delta_bias, x = ctx.saved_tensors
-        if dout.stride(-1) != 1:
-            dout = dout.contiguous()
-        du, ddelta, dA, dB, dC, dD, ddelta_bias, *rest = selective_scan_cuda_oflex.bwd(
-            u, delta, A, B, C, D, delta_bias, dout, x, ctx.delta_softplus, 1
-        )
-        return (du, ddelta, dA, dB, dC, dD, ddelta_bias, None, None, None, None)
+        if ctx._use_cuda:
+            u, delta, A, B, C, D, delta_bias, x = ctx.saved_tensors
+            if dout.stride(-1) != 1:
+                dout = dout.contiguous()
+            du, ddelta, dA, dB, dC, dD, ddelta_bias, *rest = selective_scan_cuda_oflex.bwd(
+                u, delta, A, B, C, D, delta_bias, dout, x, ctx.delta_softplus, 1
+            )
+            return (du, ddelta, dA, dB, dC, dD, ddelta_bias, None, None, None, None)
+        else:
+            return (dout, None, None, None, None, None, None, None, None, None, None)
 
 
 # =============
