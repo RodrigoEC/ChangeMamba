@@ -1,4 +1,4 @@
-from create_image_subset import FileManager
+from scripts.file_manager import FileManager
 
 from config import Config
 
@@ -84,6 +84,8 @@ class MainClient:
                     'run': run_num,
                     'timestamp': datetime.now().isoformat(),
                     'metrics': metrics,
+                    "model": self.config.model_name,
+                    "dataset": self.config.dataset_name,
                     'success': True
                 }
             else:
@@ -92,6 +94,8 @@ class MainClient:
                     'run': run_num,
                     'timestamp': datetime.now().isoformat(),
                     'success': False,
+                    "model": self.config.model_name,
+                    "dataset": self.config.dataset_name,
                     'error': 'Failed to parse metrics'
                 }
         except subprocess.TimeoutExpired:
@@ -100,6 +104,8 @@ class MainClient:
                 'run': run_num,
                 'timestamp': datetime.now().isoformat(),
                 'success': False,
+                "model": self.config.model_name,
+                "dataset": self.config.dataset_name,
                 'error': 'Timeout'
             }
         except Exception as e:
@@ -108,12 +114,13 @@ class MainClient:
                 'run': run_num,
                 'timestamp': datetime.now().isoformat(),
                 'success': False,
+                "model": self.config.model_name,
+                "dataset": self.config.dataset_name,
                 'error': str(e)
             }
 
 
     def run(self):
-        
         for _ in range(self.config.num_batches):
             self._reset_environment(self.config.batch_output_dir)
             FileManager.create_subset(
@@ -123,11 +130,16 @@ class MainClient:
                 self.config.images_per_batch,
             )
 
+            res = []
             for i in range(self.config.iterations):
                 
                 self._reset_environment("../results")
-                self.run_inference(i + 1, self.config.batch_output_dir, self.config.data_list_path)
-
+                summary = self.run_inference(i + 1, self.config.batch_output_dir, self.config.data_list_path)
+                res.append(summary)
+        
+            FileManager.append_results_to_json(res, "../results/summary.json")
+            
+            
 if __name__ == "__main__":
     config = Config(
         

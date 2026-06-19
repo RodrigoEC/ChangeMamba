@@ -137,7 +137,13 @@ class BCDInferer(BaseInferer):
         self.evaluator.add_batch(labels.cpu().numpy(), predictions)
 
         image_name = os.path.splitext(names[0])[0] + ".png"
+        print(f"DEBUG: predictions.shape={predictions.shape}, after squeeze={predictions.squeeze().shape}")
         binary_change_map = predictions.squeeze().astype("uint8")
+        
+        if binary_change_map.ndim != 2:
+            print(f"\n BINARY\n {binary_change_map.ndim}\n")
+            binary_change_map = predictions[0].astype("uint8")
+                                                      
         binary_change_map[binary_change_map == 1] = 255
         imageio.imwrite(os.path.join(self.change_map_saved_path, image_name), binary_change_map)
 

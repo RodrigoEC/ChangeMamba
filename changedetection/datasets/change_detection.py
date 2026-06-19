@@ -26,7 +26,10 @@ class ChangeDetectionDataset(BaseChangeDataset):
 
         pre_img = self.loader(pre_path)
         post_img = self.loader(post_path)
-        label = self.loader(label_path) / 255
+        label = self.loader(label_path)
+        label = label / 255 if label.max() > 1 else label
+
+
 
         pre_img, post_img, label = self._transform(pre_img, post_img, label)
         return pre_img, post_img, label, item_name
