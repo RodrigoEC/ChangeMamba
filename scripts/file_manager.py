@@ -115,15 +115,16 @@ class FileManager:
         if not source_path.exists():
             raise FileNotFoundError(f"Source directory not found: {source_path}")
 
-        required_dirs = {'GT', 'T1', 'T2'}
+        required_dirs = {'GT_CD', 'GT_T1', 'GT_T1_COLORED', 'GT_T2', 'GT_T2_COLORED', 'T1', 'T2'}
+        # required_dirs = {'GT', 'T1', 'T2'}
         for dir_name in required_dirs:
             dir_path = source_path / dir_name
             if not dir_path.exists() or not dir_path.is_dir():
                 raise FileNotFoundError(f"Required directory not found: {dir_path}")
 
-        # Get list of images from GT directory
-        gt_dir = source_path / 'GT'
-        image_files = sorted([f.name for f in gt_dir.iterdir() if f.is_file()])
+        # Get list of images from GT directory (skip macOS AppleDouble metadata files)
+        gt_dir = source_path / 'GT_CD'
+        image_files = sorted([f.name for f in gt_dir.iterdir() if f.is_file() and not f.name.startswith('._')])
 
         if len(image_files) < num_images:
             print(f"Warning: Only {len(image_files)} images found, but {num_images} requested.")

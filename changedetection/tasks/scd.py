@@ -154,6 +154,10 @@ class SCDTrainer(BaseTrainer):
 class SCDInferer(BaseInferer):
     task_name = "scd"
 
+    def __init__(self, args):
+        self.evaluator = SemanticChangeEvaluator(num_class=37)
+        super().__init__(args)
+
     def build_model(self, config):
         return ChangeMambaSCD(
             output_cd=2,
@@ -182,14 +186,24 @@ class SCDInferer(BaseInferer):
         os.makedirs(self.change_map_T2_saved_path, exist_ok=True)
 
     def infer_batch(self, batch):
-        pre_change_imgs, post_change_imgs, _, _, _, names = batch
+        pre_change_imgs, post_change_imgs, labels_cd, labels_clf_t1, labels_clf_t2, names = batch
         pre_change_imgs = pre_change_imgs.to(self.device)
         post_change_imgs = post_change_imgs.to(self.device)
+        labels_cd = labels_cd.long().numpy()
+        labels_clf_t1 = labels_clf_t1.long().numpy()
+        labels_clf_t2 = labels_clf_t2.long().numpy()
 
         output_cd, output_semantic_t1, output_semantic_t2 = self.model(pre_change_imgs, post_change_imgs)
         change_mask = torch.argmax(output_cd, dim=1)
         preds_a = (torch.argmax(output_semantic_t1, dim=1) * change_mask.squeeze().long()).cpu().numpy()
         preds_b = (torch.argmax(output_semantic_t2, dim=1) * change_mask.squeeze().long()).cpu().numpy()
+
+        preds_scd = (preds_a - 1) * 6 + preds_b
+        preds_scd[change_mask.cpu().numpy() == 0] = 0
+        labels_scd = (labels_clf_t1 - 1) * 6 + labels_clf_t2
+        labels_scd[labels_cd == 0] = 0
+        for pred_scd, label_scd in zip(preds_scd, labels_scd):
+            self.evaluator.add_batch(pred_scd, label_scd)
 
         image_name = os.path.splitext(names[0])[0] + ".png"
         change_map_t1 = map_labels_to_colors(preds_a.squeeze(), SECOND_COLOR_MAP, SECOND_LABELS)
@@ -198,4 +212,17 @@ class SCDInferer(BaseInferer):
         imageio.imwrite(os.path.join(self.change_map_T2_saved_path, image_name), change_map_t2)
 
     def finish(self):
+        metrics = self.evaluator.compute()
+        self.emit_log(
+            format_log_block(
+                "INFER Summary",
+                {
+                    "Kappa": metrics.kappa,
+                    "Fscd": metrics.fscd,
+                    "OA": metrics.oa,
+                    "mIoU": metrics.miou,
+                    "SeK": metrics.sek,
+                },
+            )
+        )
         self.emit_log("Inference stage is done!")
