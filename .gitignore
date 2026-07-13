@@ -58,6 +58,8 @@ saved_models/
 changedetection/*.o*
 slurm-*.out
 core-*
+.DS_Store
+
 
 
 changedetection/datasets/data_name_list/SYSU-CD
