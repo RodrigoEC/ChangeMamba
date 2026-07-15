@@ -1,87 +1,46 @@
-<div align="center">
-<h1 align="center">ChangeMamba</h1>
+<h1 align="center">Reprodução experimento - ChangeMamba</h1>
 
-<h3>ChangeMamba: Remote Sensing Change Detection with Spatio-Temporal State Space Model</h3>
-
-[Hongruixuan Chen](https://scholar.google.ch/citations?user=XOk4Cf0AAAAJ&hl=zh-CN&oi=ao)<sup>1 #</sup>, [Jian Song](https://scholar.google.ch/citations?user=CgcMFJsAAAAJ&hl=zh-CN)<sup>1,2 #</sup>, [Chengxi Han](https://chengxihan.github.io/)<sup>3</sup>, [Junshi Xia](https://scholar.google.com/citations?user=n1aKdTkAAAAJ&hl=en)<sup>2</sup>, [Naoto Yokoya](https://scholar.google.co.jp/citations?user=DJ2KOn8AAAAJ&hl=en)<sup>1,2 *</sup>
-
-<sup>1</sup> The University of Tokyo, <sup>2</sup> RIKEN AIP,  <sup>3</sup> Wuhan University.
-
-<sup>#</sup> Equal contribution, <sup>*</sup> Corresponding author
+<h3>Reprodução do ChangeMamba: Avaliação dos Modelos
+MambaBCD e MambaSCD para Detecção de Mudança</h3>
 
 
-[![TGRS paper](https://img.shields.io/badge/TGRS-paper-00629B.svg)](https://ieeexplore.ieee.org/document/10565926)  [![arXiv paper](https://img.shields.io/badge/arXiv-paper-b31b1b.svg)](https://arxiv.org/pdf/2404.03425.pdf) [![Zenodo Models](https://img.shields.io/badge/Zenodo-Models-green)](https://zenodo.org/records/14037769) ![visitors](https://visitor-badge.laobi.icu/badge?page_id=ChenHongruixuan.MambaCD&left_color=%2363C7E6&right_color=%23CEE75F)
-
-[**Overview**](#overview) | [**Get Started**](#%EF%B8%8Flets-get-started) | [**Taken Away**](#%EF%B8%8Fresults-taken-away) | [**Common Issues**](#common-issues) | [**Others**](#q--a) | [**简体中文版**](./README_zh-CN.md)
-
-
-
-</div>
-
-## 🛎️Updates
-* **` Notice🐍🐍`**: ChangeMamba has been accepted by [IEEE TGRS](https://ieeexplore.ieee.org/document/10565926)! We'd appreciate it if you could give this repo a ⭐️**star**⭐️ and stay tuned!!
-* **` Mar. 30th, 2026`**: We have reorganized code to streamline the repo!!
-* **` Mar. 14th, 2026`**: ChangeMamba has once again been selected as 🔥ESI Hot Paper and Highly Cited Paper🏆!!
-* **` May 21st, 2025`**: We have updated the script to train ChangeMamba on [BRIGHT dataset](https://github.com/ChenHongruixuan/BRIGHT) and released [model's checkpoints](https://zenodo.org/records/14037769)!!
-* **` Nov. 13th, 2025`**: ChangeMamba has been selected as 🔥ESI Hot Paper and Highly Cited Paper🏆 for 12 consecutive months!!
-* **` Nov. 14th, 2024`**: ChangeMamba has been selected as 🔥ESI Hot Paper🔥!!
-* **` Sept. 14th, 2024`**: ChangeMamba has been selected as 🏆ESI Highly Cited Paper🏆!!
-* **` Aug. 05th, 2024`**: ChangeMamba has been selected as [IEEE TGRS Popular Paper](https://ieeexplore.ieee.org/xpl/topAccessedArticles.jsp?punumber=36)!!
-* **` July 19th, 2024`**: ChangeMamba has been selected as [IEEE GRSS Weekly Paper](https://www.linkedin.com/feed/update/urn:li:activity:7219970529498214400/)!!
-* **` June 17th, 2024`**: ChangeMamba has been accepted by [IEEE TGRS](https://ieeexplore.ieee.org/document/10565926)!!
-* **` June 08th, 2024`**: [Simplified Chinese version](./README_zh-CN.md) of the README file is available!!
-* **` April 18th, 2024`**: We have released all weights of ChangeMamba models on BCD tasks. You are welcome [use them](#%EF%B8%8Fresults-taken-away)!!
-* **` April 05th, 2024`**: The models and training code for MambaBCD, MambaSCD, and MambaBDA have been organized and uploaded. You are welcome to use them!!
 
 ## 🔭Overview
 
-* [**ChangeMamba**](https://ieeexplore.ieee.org/document/10565926) serves as a strong benchmark for change detection tasks, including binary change detection (MambaBCD), semantic change detection (MambaSCD), and building damage assessment (MambaBDA). 
+Esse repositório é um *fork* do repositório do [**ChangeMamba**](https://ieeexplore.ieee.org/document/10565926). A partir do kit de reprodução ja estabelecido pelos autores, foram criados outros scripts para a automatização da execução do experimento, focando na execução do código e formatação das imagens, pacotes de imagens e execução de várias inferencias sequencialmente.
 
-<p align="center">
-  <img src="figures/network_architecture.png" alt="accuracy" width="90%">
-</p>
-
-* **Spatio-temporal relationship learning methods of ChangeMamba**
-
-<p align="center">
-  <img src="figures/STLM.png" alt="arch" width="60%">
-</p>
+**📚 Documentação:**
+- **Este arquivo (README.md)** - Quick start e instruções básicas
+- **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Guia completo de reproducibilidade, problemas comuns e soluções
 
 
-## 🗝️Let's Get Started!
-### `A. Installation`
+## 2. Setup do Ambiente
 
-Note that the code in this repo runs under **Linux** system. We have not tested whether it works under other OS.
+### 2.1 Instalação
 
-The repo is based on the [VMamba repo](https://github.com/MzeroMiko/VMamba), thus you need to install it first. The following installation sequence is taken from the VMamba repo. 
+Devido ao uso de algumas dependências do código, é recomendado que ele seja executado em um ambiente **Linux**. A execução dele em algum ambiente como Windows ou MacOS pode acarretar em erros de execução.
 
-**Step 1: Clone the repository:**
 
-Clone this repository and navigate to the project directory:
 ```bash
-git clone https://github.com/ChenHongruixuan/ChangeMamba.git
+# 1. Clone e ambiente
+git clone https://github.com/RodrigoEC/ChangeMamba.git
 cd ChangeMamba
-```
 
-
-**Step 2: Environment Setup:**
-
-It is recommended to set up a conda environment and installing dependencies via pip. Use the following commands to set up your environment:
-
-***Create and activate a new conda environment***
-
-```bash
-conda create -n changemamba
+conda create -n changemamba python=3.8
 conda activate changemamba
-```
 
-***Install dependencies***
-
-```bash
+# 2. Dependências (versões FIXADAS)
 pip install -r requirements.txt
-cd kernels/selective_scan && pip install .
-```
 
+# 3. Kernel customizado
+cd changedetection/kernels/selective_scan
+pip install .
+cd ../../..
+
+# 4. Validação
+python -c "import torch; print(torch.__version__)"
+
+```
 <!-- 
 ***Dependencies for "Detection" and "Segmentation" (optional in VMamba)***
 
@@ -89,19 +48,42 @@ cd kernels/selective_scan && pip install .
 pip install mmengine==0.10.1 mmcv==2.1.0 opencv-python-headless ftfy regex
 pip install mmdet==3.3.0 mmsegmentation==1.2.2 mmpretrain==1.2.0
 ``` -->
-### `B. Download Pretrained Weight`
-Also, please download the pretrained weights of [VMamba-Tiny](https://zenodo.org/records/14037769), [VMamba-Small](https://zenodo.org/records/14037769), and [VMamba-Base](https://zenodo.org/records/14037769) and put them under 
+
+### `B. Download dos pesos pré-treinados utilizados na reprodução`
+
+Faça o Download de todos os pesos pré-treinados utilizados nos experimentos. Todos eles estão no [zenodo](https://zenodo.org/records/14037769). Uma vez instalados, coloque eles no seguinte caminho:
+
 ```bash
 project_path/ChangeMamba/pretrained_weight/
 ```
 
-### `C. Data Preparation`
+Os pesos utilizados na reprodução feita são os seguintes
+
+**Detecção de Mudança Binária**
+- MambaBCD_Base_LEVIRCD+_F1_0.8823.pth
+- MambaBCD_Small_LEVIRCD+_F1_0.8825.pth
+- MambaBCD_Tiny_LEVIRCD+_F1_0.8803.pth
+---
+- MambaBCD_Base_SYSU_F1_0.8331.pth
+- MambaBCD_Small_SYSU_F1_0.8336.pth
+- MambaBCD_Tiny_SYSU_F1_0.8316.pth
+---
+- MambaBCD_Base_WHU_F1_0.9419.pth
+- MambaBCD_Small_WHU_F1_0.9404.pth
+- MambaBCD_Tiny_WHU_F1_0.9409.pth
+
+**Detecção de Mudança Semântica**
+- MambaSCD_Tiny_SECOND_SeK_0.2208.pth
+- MambaSCD_Base_SECOND_SeK_0.2292.pth
+
+### `C. Preparação dos dados`
 ***Binary change detection***
 
-The three datasets [SYSU](https://github.com/liumency/SYSU-CD), [LEVIR-CD+](https://chenhao.in/LEVIR/) and [WHU-CD](http://gpcv.whu.edu.cn/data/building_dataset.html) are used for binary change detection experiments. Please download them and make them have the following folder/file structure:
+Os três datasets utilizados na Detecção de Mudança Binária (BCD) devem seguir a mesma estrutura a seguir:
+
 ```
 ${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/SYSU
-├── train
+├── test
 │   ├── T1
 │   │   ├──00001.png
 │   │   ├──00002.png
@@ -116,23 +98,82 @@ ${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/SYS
 │       ├──00001.png 
 │       ...   
 │   
-├── test
-│   ├── ...
-│   ...
-│  
-├── train_set.txt   # Data name list, recording all the names of training data
 └── test_set.txt    # Data name list, recording all the names of testing data
 ```
 
+Segue os a fonte e pré-processamento feito em cada um dos três *datasets*:
+
+- SYSU: https://github.com/liumency/SYSU-CD
+
+- LEVIR-CD+: https://www.kaggle.com/datasets/mdrifaturrahman33/levir-cd-change-detection?resource=download
+
+- WHU-CD: http://gpcv.whu.edu.cn/data/building_dataset.html (base de testes, seção 2.2). 
+
+#### Pré-processamento do WHU-CD
+
+**Por que pré-processar?**
+- Dataset WHU vem como imagens `.tif` de alta resolução (~4000×4000 px)
+- Modelo espera imagens de 256×256 px
+- Solução: dividir em tiles (pedaços) de 256×256 px e converter para `.png`
+
+**Como fazer:**
+
+O repositório fornece `FileManager.split_image_into_tiles()` para automatizar isso.
+
+**Passo 1: Organize os arquivos TIF**
+
+Após baixar WHU-CD, você terá:
+```
+whu-data/
+├── 2012/whole_image/test/image/2012_test.tif      (imagem T1)
+├── 2016/whole_image/test/image/2016_test.tif      (imagem T2)
+└── change_label/test/change_label.tif             (GT binário)
+```
+
+**Passo 2: Execute o pré-processamento**
+
+Edite `scripts/file_manager.py` e na seção `if __name__ == "__main__":`:
+
+```python
+if __name__ == "__main__":
+    # Substitua os caminhos pelos seus paths locais
+    whu_data_path = "/seu/caminho/para/whu-data"
+    dataset_output = "/seu/caminho/para/dataset/WHU"
+    
+    # Processa as 3 imagens
+    FileManager.split_image_into_tiles(
+        f"{whu_data_path}/2012/whole_image/test/image/2012_test.tif",
+        f"{dataset_output}/T1"
+    )
+    
+    FileManager.split_image_into_tiles(
+        f"{whu_data_path}/2016/whole_image/test/image/2016_test.tif",
+        f"{dataset_output}/T2"
+    )
+    
+    FileManager.split_image_into_tiles(
+        f"{whu_data_path}/change_label/test/change_label.tif",
+        f"{dataset_output}/GT"
+    )
+```
+
+Depois execute:
+```bash
+cd scripts
+python file_manager.py
+```
+
+**Resultado:** 
+- Você terá ~12,096 imagens de 256×256 px em cada pasta (T1, T2, GT)
+- Todos em formato `.png` (pronto para o modelo)
+
 ***Semantic change detection***
 
-The [SECOND dataset](https://captain-whu.github.io/SCD/) is used for semantic change detection experiments. Please download it and make it have the following folder/file structure. Note that **the land-cover maps are RGB images in the original SECOND dataset for visualization, you need to transform them into single-channel**. Also, **the binary change maps should be generated by yourself** and put them into folder [`GT_CD`]. 
-
-Or you are welcome to directly download and use our [preprocessed SECOND dataset](https://zenodo.org/records/14037769).
+Baixe o dataset SECOND pré-processado no [Zenodo](https://zenodo.org/records/14037769) e siga a seguinte estrutura:
 
 ```
 ${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/SECOND
-├── train
+├── test
 │   ├── T1
 │   │   ├──00001.png
 │   │   ├──00002.png
@@ -155,7 +196,7 @@ ${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/SEC
 │       ├──00001.png 
 │       ...  
 │   
-├── test
+├── train
 │   ├── ...
 │   ...
 │ 
@@ -163,238 +204,81 @@ ${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/SEC
 └── test_set.txt
 ```
 
-***Building damage assessment***
 
-The xBD dataset can be downloaded from [xView 2 Challenge website](https://xview2.org/dataset). After downloading it, please organize it into the following structure: 
-```
-${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/xBD
-├── train
-│   ├── images
-│   │   ├──guatemala-volcano_00000000_pre_disaster.png
-│   │   ├──guatemala-volcano_00000000_post_disaster.png
-│   │   ...
-│   │
-│   └── masks
-│       ├──guatemala-volcano_00000003_pre_disaster_target.png
-│       ├──guatemala-volcano_00000003_post_disaster_target.png
-│       ... 
-│   
-├── test
-│   ├── ...
-│   ...
-│
-├── holdout
-│   ├── ...
-│   ...
-│
-├── train_set.txt    # Data name list, recording all the names of training data
-├── test_set.txt     # Data name list, recording all the names of testing data
-└── holdout_set.txt  # Data name list, recording all the names of holdout data
+### `D. Treinamento do modelo`
+
+Apesar de ser possível o treinamento do modelo usando o código desse repositório, vamos pular essa seção, uma vez que vamos utilizar os pesos pré-treinados.
+
+### `E. Inferencia`
+
+#### Passo 1 - Configuração da execução
+
+Para definir qual modelo, dataset e numero de iteracoes, criei uma entidade `Config`, presente em `/scripts/config.py`. Ela será passada para a execução uma vez que ela seja definida. A entidade config pode ser definida da seguinte forma:
+
+```python
+from config import Config
+
+config = Config(
+  data_path = "/seu/caminho/dataset/test"),
+  data_list_path = "/seu/caminho/dataset/test_set.txt",
+  dataset_name = "nome-dataset",
+  model_name = "nome-modelo",
+  model_path = "/seu/caminho/model/modelo.pth",
+  config_path =  "changedetection/configs/vssm1/vssm_tiny_224_0229flex.yaml", # Para cada variação do modelo (tiny, small e base existe uma config correta)
+  iterations = 5,
+  script_name = "infer_MambaBCD" # ou infer_MambaSCD
+)
 ```
 
+#### Passo 2 - Executar main script
 
-### `D. Model Training`
-Before training models, please enter into [`changedetection`] folder, which contains all the code for network definitions, training and testing. 
+Com uma configuração em mãos, basta instanciar e executar o nosso `MainClient`.
 
-```bash
-cd <project_path>/ChangeMamba/changedetection
+```python
+client = MainClient(config=config)
+client.run(use_batch=False) # parametro para usarmos o dataset inteiro ou batches aleatorias de até 500 imagens
 ```
 
-***Binary change detection***
+**Pronto!** Resultados em `scripts/summary.json`
 
-The following commands show how to train and evaluate MambaBCD-Small on the SYSU dataset:
-```bash
-python script/train_MambaBCD.py  --dataset 'SYSU' \
-                                 --batch_size 16 \
-                                 --crop_size 256 \
-                                 --max_iters 20000 \
-                                 --model_type MambaBCD_Small \
-                                 --model_param_path '<project_path>/ChangeMamba/changedetection/saved_models' \
-                                 --train_dataset_path '<dataset_path>/SYSU/train' \
-                                 --train_data_list_path '<dataset_path>/SYSU/train_set.txt' \
-                                 --test_dataset_path '<dataset_path>/SYSU/test' \
-                                 --test_data_list_path '<dataset_path>/SYSU/test_set.txt' \
-                                 --cfg '<project_path>/ChangeMamba/changedetection/configs/vssm1/vssm_small_224.yaml' \
-                                 --encoder_pretrained_path '<project_path>/ChangeMamba/pretrained_weight/vssm_small_0229_ckpt_epoch_222.pth'
+
+#### Passo extra caso queira xecutar varias configurações de uma vez
+
+No arquivo `/scripts/main.py`, dentro de `if __name__ == "__main__":`, existe um for loop para a execução direta de varias configurações de execução. Ele é ótimo para colocar para rodar e não precisar ficar mudando as configurações e executando novamente o código para rodar outras inferencias para outros modelos e datasets. Só uma dica mesmo hehe.
+
+---
+
+## 7. Resultados
+
+### Formato JSON (summary.json)
+
+```json
+[
+  {
+    "run": 1,
+    "timestamp": "2026-06-18T10:30:00.123456",
+    "dataset": "LEVIR-CD+",
+    "model": "MambaBCD_Tiny",
+    "metrics": {
+      "F1": 0.8803,
+      "Recall": 0.8705,
+      "Precision": 0.8905
+    },
+    "batch": 0,
+    "success": true
+  },
+  {
+    "run": 2,
+    ...
+  }
+]
 ```
 
-***Semantic change detection***
+### Diretórios Gerados
 
-The following commands show how to train and evaluate MambaSCD-Small on the SECOND dataset:
-```bash
-python script/train_MambaSCD.py  --dataset 'SECOND' \
-                                 --batch_size 16 \
-                                 --crop_size 512 \
-                                 --max_iters 50000 \
-                                 --model_type MambaSCD_Small \
-                                 --model_param_path '<project_path>/ChangeMamba/changedetection/saved_models' \
-                                 --train_dataset_path '<dataset_path>/SECOND/train' \
-                                 --train_data_list_path '<dataset_path>/SECOND/train_set.txt' \
-                                 --test_dataset_path '<dataset_path>/SECOND/test' \
-                                 --test_data_list_path '<dataset_path>/SECOND/test_set.txt' \
-                                 --cfg '<project_path>/ChangeMamba/changedetection/configs/vssm1/vssm_small_224.yaml' \
-                                 --encoder_pretrained_path '<project_path>/ChangeMamba/pretrained_weight/vssm_small_0229_ckpt_epoch_222.pth'
 ```
-
-***Building Damage Assessment***
-
-The following commands show how to train and evaluate MambaBDA-Small on the xBD dataset:
-```bash
-python script/train_MambaBDA.py  --dataset 'xBD' \
-                                 --batch_size 16 \
-                                 --crop_size 512 \
-                                 --max_iters 80000 \
-                                 --model_type MambaBDA_Small \
-                                 --model_param_path '<project_path>/ChangeMamba/changedetection/saved_models' \
-                                 --train_dataset_path '<dataset_path>/xBD/train' \
-                                 --train_data_list_path '<dataset_path>/xBD/train_set.txt' \
-                                 --test_dataset_path '<dataset_path>/xBD/test' \
-                                 --test_data_list_path '<dataset_path>/xBD/test_set.txt' \
-                                 --cfg '<project_path>/ChangeMamba/changedetection/configs/vssm1/vssm_small_224.yaml' \
-                                 --encoder_pretrained_path '<project_path>/ChangeMamba/pretrained_weight/vssm_small_0229_ckpt_epoch_222.pth'
+scripts/
+├── batch/           # Dados temporários
+├── results/         # Mapas preditos
+└── summary.json     # Resultados finais
 ```
-### `E. Inference Using Our/Your Weights`
-
-Before inference, please enter into [`changedetection`] folder. 
-```bash
-cd <project_path>/ChangeMamba/changedetection
-```
-
-
-***Binary change detection***
-
-The following commands show how to infer binary change maps using trained MambaBCD-Tiny on the LEVIR-CD+ dataset:
-
-* **`Parameter guide`**:
-  * `--encoder_pretrained_path`: encoder/backbone pretrained weights only.
-  * `--model_checkpoint_path`: full ChangeMamba model weights for inference or weight-only initialization.
-  * `--resume_training_path`: training resume checkpoint with optimizer/scheduler/iteration state.
-* **`Historical Zenodo checkpoints`**: some published task checkpoints contain model weights only. They still work with `--model_checkpoint_path`, but they should not be treated as full training resumes.
-
-```bash
-python script/infer_MambaBCD.py  --dataset 'LEVIR-CD+' \
-                                 --model_type 'MambaBCD_Tiny' \
-                                 --test_dataset_path '<dataset_path>/LEVIR-CD+/test' \
-                                 --test_data_list_path '<dataset_path>/LEVIR-CD+/test_set.txt' \
-                                 --cfg '<project_path>/ChangeMamba/changedetection/configs/vssm1/vssm_tiny_224_0229flex.yaml' \
-                                 --model_checkpoint_path '<saved_model_path>/MambaBCD_Tiny_LEVIRCD+_F1_0.8803.pth'
-```
-
-***Semantic change detection***
-
-The following commands show how to infer semantic change maps using trained MambaSCD-Tiny on the SECOND dataset:
-```bash
-python script/infer_MambaSCD.py  --dataset 'SECOND'  \
-                                 --model_type 'MambaSCD_Tiny' \
-                                 --test_dataset_path '<dataset_path>/SECOND/test' \
-                                 --test_data_list_path '<dataset_path>/SECOND/test_set.txt' \
-                                 --cfg '<project_path>/ChangeMamba/changedetection/configs/vssm1/vssm_tiny_224_0229flex.yaml' \
-                                 --model_checkpoint_path '<saved_model_path>/[your_trained_model].pth'
-```
-
-***Building damage assessment***
-
-The following commands show how to infer building damage assessment results using trained MambaBDA-Tiny on the xBD dataset:
-```bash
-python script/infer_MambaBDA.py  --dataset 'xBD'  \
-                                 --model_type 'MambaBDA_Tiny' \
-                                 --test_dataset_path '<dataset_path>/xBD/test' \
-                                 --test_data_list_path '<dataset_path>/xBD/test_set.txt' \
-                                 --cfg '<project_path>/ChangeMamba/changedetection/configs/vssm1/vssm_tiny_224_0229flex.yaml' \
-                                 --model_checkpoint_path '<saved_model_path>/[your_trained_model].pth'
-```
-
-
-## ⚗️Results Taken Away
-
-
-* *We'd appreciate it if you could give this repo a ⭐️**star**⭐️ and stay tuned.*
-
-* *Please note that the code we uploaded was reorganised and collated. The models below were also trained using the reorganised code and therefore accuracy may not perfectly match the original paper. In most cases, the accuracy is higher than that in the paper.*
-
-* *We also uploaded prediction results. You can download them and use them directly in your paper [[Zenodo](https://zenodo.org/records/14037769)] [[GDrive](https://drive.google.com/drive/folders/1kVKgbElM23c-hSNZ_TTqfxXNXrPgNJ6L?usp=sharing)][[BaiduYun](https://pan.baidu.com/s/1RYXRL0emsKDL_9_v82nIjQ?pwd=df2t)].*
-
-
-### `A. Pretrained Weight of VMamba (Encoder)`
-
-| Method | ImageNet (ckpt) | 
-| :---: | :---: |
-| VMamba-Tiny | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/160PXughGMNZ1GyByspLFS68sfUdrQE2N/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/1P9KRVy4lW8LaKJ898eQ_0w?pwd=7qxh)] |   
-| VMamba-Small | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1dxHtFEgeJ9KL5WiLlvQOZK5jSEEd2Nmz/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/1RRjTA9ONhO43sBLp_a2TSw?pwd=6qk1)]   | 
-| VMamba-Base |  [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1kUHSBDoFvFG58EmwWurdSVZd8gyKWYfr/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/14_syzqwNnVB8rD3tejEZ4w?pwd=q825)] | 
-
-
-
-### `B. Binary Change Detection`
-
-| Method | SYSU (ckpt) | LEVIR-CD+ (ckpt) | WHU-CD (ckpt) | 
-| :---: | :---: | :---: | :---: |
-| MambaBCD-Tiny | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1qoivh0zrZjpPzUOiIxLWZn7kdBQ-MqnY/view?usp=sharing)][[BaiduYun](https://pan.baidu.com/s/160RiqDQKB6rBwn7Fke6xFQ?pwd=wqf9)] |  [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1AtiXBBCoofi1e5g4STYUzBgJ1fYN4VhN/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/13dGC_J-wyIfoPwoPJ5Uc6Q?pwd=8ali)]	 | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1ZLKXhGKgnWoyS0X8g3HS45a3X1MP_QE6/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/1DhTedGZdIC80y06tog1xbg?pwd=raf0)] | 
-| MambaBCD-Small | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1ZEPF6CvvFynL-yu_wpEYdpHMHl7tahpH/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/1f8iwuKCkElU9rc24_ZzXBw?pwd=46p5)]   | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/19jEBLheCwEnQqF23EqNrn1r79D-nZ95y/view?usp=sharing)][[BaiduYun](https://pan.baidu.com/s/1EKWp-tF0EEGgZ-nVlW8S1g?pwd=n3qz)]  | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1ejiBIhSAJF0P65Xn6DpzRpARiIGPLiWw/view?usp=drive_link)][[BaiduYun]](https://pan.baidu.com/s/1tIWyfJa2o9EMwrKg-gKTnw?pwd=vizm) | 
-| MambaBCD-Base |  [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/14WbK9KjOIOWuea3JAgvIfyDvqACExZ0s/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/1xiWWjlhuJWA40cMggevdlA?pwd=4jft)] |[[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1uQy5tGXW20xFZvF7hIvZvsi7-JU7tg7G/view?usp=drive_link)] [[BaiduYun](https://pan.baidu.com/s/1M_u7HdIEFIEA2d3L1kfu3Q?pwd=rkgp)] | [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1K7aSuT3os7LR9rUvoyVNP-x0hWKZocrn/view?usp=drive_link)][[BaiduYun](https://pan.baidu.com/s/1o6Z6ecIJ59K9eB2KqNMD9w?pwd=4mqd)] |
-
-
-### `C. Semantic Change Detection`
-| Method |  SECOND (ckpt) |
-| :---: | :---: |
-| MambaSCD-Tiny |  [[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/1Q2hMC320vCpp5MQA8SK54iFY7L5JF9qN/view?usp=sharing)][[BaiduYun](https://pan.baidu.com/s/1eHUjKm8Ty0w92BvOoj53Fw?pwd=6hnj)]  |
-| MambaSCD-Small | --  | 
-| MambaSCD-Base |[[Zenodo](https://zenodo.org/records/14037769)][[GDrive](https://drive.google.com/file/d/12aJ4sL0r02-rB5K6dixtr6FGJ3kNwlFy/view?usp=sharing)][[BaiduYun](https://pan.baidu.com/s/1GxNDC2JAEvPmOiNArLrYmw?pwd=sr3i)]  | 
-
-
-
-### `D. Building Damage Assessment`
-| Method |  xBD (ckpt) |  BRIGHT (ckpt) | 
-| :---: | :---: | :---: |
-| MambaBDA-Tiny |  -- |   [[Zenodo](https://zenodo.org/records/14037769)] | 
-| MambaBDA-Small | -- | -- |
-| MambaBDA-Base | -- | -- |
-
-## 🤔Common Issues
-Based on peers' questions from issue, here's a quick navigate list of solutions to some common issues.
-
-| Issue | Solution | 
-| :---: | :---: | 
-| Issues about SECOND dataset | Please refer to Issue [#13](https://github.com/ChenHongruixuan/ChangeMamba/issues/13) / [#22](https://github.com/ChenHongruixuan/ChangeMamba/issues/22) / [#45](https://github.com/ChenHongruixuan/ChangeMamba/issues/45) |
-| CUDA out of memory issue | Please lower the batch size of training and evaluation |
-| Modify the model structure | Please refer to Issue [#44](https://github.com/ChenHongruixuan/ChangeMamba/issues/44) |
-| NameError: name 'selective_scan_cuda_oflex' is not defined | Please refer to Issue [#9](https://github.com/ChenHongruixuan/ChangeMamba/issues/9) |
-| Question about the relationship between iteration, epoch & batch size | Please refer to Issue [#32](https://github.com/ChenHongruixuan/ChangeMamba/issues/32) / [#48](https://github.com/ChenHongruixuan/ChangeMamba/issues/48) |
-| Inference using trained models has low accuracy | Please use `--model_checkpoint_path` instead of `--encoder_pretrained_path` to load the trained model's weight |
-
-
-## 📜Reference
-
-If this code or dataset contributes to your research, please kindly consider citing our paper and give this repo ⭐️ :
-```
-@article{chen2024changemamba,
-  author={Hongruixuan Chen and Jian Song and Chengxi Han and Junshi Xia and Naoto Yokoya},
-  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
-  title={ChangeMamba: Remote Sensing Change Detection with Spatiotemporal State Space Model}, 
-  year={2024},
-  volume={62},
-  number={},
-  pages={1-20},
-  doi={10.1109/TGRS.2024.3417253}
-}
-```
-
-
-
-## 🤝Acknowledgments
-This project is based on VMamba ([paper](https://arxiv.org/abs/2401.10166), [code](https://github.com/MzeroMiko/VMamba)), ScanNet ([paper](https://arxiv.org/abs/2212.05245), [code](https://github.com/ggsDing/SCanNet)), BDANet ([paper](https://ieeexplore.ieee.org/document/9442902), [code](https://github.com/ShaneShen/BDANet-Building-Damage-Assessment)). Thanks for their excellent works!!
-
-## 🙋Q & A
-***For any questions, please feel free to [contact us.](mailto:Qschrx@gmail.com)***
-
-[![Star History Chart](https://api.star-history.com/svg?repos=ChenHongruixuan/ChangeMamba&type=Date)](https://star-history.com/#ChenHongruixuan/ChangeMamba&Date)
-
-
-python script/infer_MambaBCD.py \
-  --dataset 'SYSU-CD' \
-  --model_type 'MambaBCD_Tiny' \
-  --test_dataset_path '<dataset_path>/LEVIR-CD+/test' \
-  --test_data_list_path '<dataset_path>/LEVIR-CD+/test_set.txt' \
-  --cfg 'changedetection/configs/vssm1/vssm_tiny_224_0229flex.yaml' \
-  --model_checkpoint_path '<model>.pth' \
-  --cuda False

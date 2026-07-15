@@ -1,13 +1,40 @@
-torch
-torchvision
-torchaudio
-packaging
+# Core ML & DL
+torch==2.0.0
+torchvision==0.15.1
+torchaudio==2.0.0
+
+# Transformers & Vision Models
 timm==0.4.12
-pytest 
-chardet 
-yacs 
-termcolor
-submitit 
-tensorboardX
-fvcore
-seaborn
+
+# Image Processing & Data
+Pillow==10.0.0
+opencv-python==4.8.1.78
+numpy==1.24.3
+scipy==1.11.2
+
+# Configuration & Logging
+yacs==0.1.8
+tensorboardX==2.6.2.2
+packaging==23.1
+
+# Utils & CLI
+termcolor==2.3.0
+chardet==5.1.0
+fvcore==0.1.5.post20230915
+seaborn==0.13.0
+
+# Testing
+pytest==7.4.0
+
+# Job Submission (optional)
+submitit==1.4.5
+
+# Parallelization
+tqdm==4.66.1
+
+# JSON & Data Handling
+pyyaml==6.0.1
+
+# Scientific Computing
+matplotlib==3.7.3
+pandas==2.0.3
