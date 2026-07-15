@@ -77,7 +77,7 @@ Os pesos utilizados na reprodução feita são os seguintes
 - MambaSCD_Base_SECOND_SeK_0.2292.pth
 
 ### `C. Preparação dos dados`
-***Binary change detection***
+### ***Binary change detection***
 
 Os três datasets utilizados na Detecção de Mudança Binária (BCD) devem seguir a mesma estrutura a seguir:
 
@@ -101,15 +101,17 @@ ${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/SYS
 └── test_set.txt    # Data name list, recording all the names of testing data
 ```
 
-Segue os a fonte e pré-processamento feito em cada um dos três *datasets*:
+Seguem as fonte e pré-processamentos feito em cada um dos três *datasets*:
 
-- SYSU: https://github.com/liumency/SYSU-CD
+#### SYSU
+Fonte: https://github.com/liumency/SYSU-CD
+#### LEVIR-CD+
+Fonte: https://www.kaggle.com/datasets/mdrifaturrahman33/levir-cd-change-detection?resource=download
 
-- LEVIR-CD+: https://www.kaggle.com/datasets/mdrifaturrahman33/levir-cd-change-detection?resource=download
+#### WHU-CD
+Fonte: http://gpcv.whu.edu.cn/data/building_dataset.html (base de testes, seção 2.2). 
 
-- WHU-CD: http://gpcv.whu.edu.cn/data/building_dataset.html (base de testes, seção 2.2). 
-
-#### Pré-processamento do WHU-CD
+**Pré-processamento do WHU-CD**
 
 **Por que pré-processar?**
 - Dataset WHU vem como imagens `.tif` de alta resolução (~4000×4000 px)
@@ -167,7 +169,7 @@ python file_manager.py
 - Você terá ~12,096 imagens de 256×256 px em cada pasta (T1, T2, GT)
 - Todos em formato `.png` (pronto para o modelo)
 
-***Semantic change detection***
+### ***Semantic change detection***
 
 Baixe o dataset SECOND pré-processado no [Zenodo](https://zenodo.org/records/14037769) e siga a seguinte estrutura:
 
@@ -209,7 +211,7 @@ ${DATASET_ROOT}   # Dataset root directory, for example: /home/username/data/SEC
 
 Apesar de ser possível o treinamento do modelo usando o código desse repositório, vamos pular essa seção, uma vez que vamos utilizar os pesos pré-treinados.
 
-### `E. Inferencia`
+### `E. Inferência`
 
 #### Passo 1 - Configuração da execução
 
