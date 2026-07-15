@@ -270,5 +270,7 @@ No arquivo `/scripts/main.py`, dentro de `if __name__ == "__main__":`, existe um
 scripts/
 ├── batch/           # Dados temporários
 ├── results/         # Mapas preditos
+└── original_summary.json     # Resultados finais
+└── summary-batches.json     # Resultados finais
 └── summary.json     # Resultados finais
 ```
