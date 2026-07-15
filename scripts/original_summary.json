@@ -1,0 +1,188 @@
+[
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:12:46.078495",
+    "metrics": {
+      "Recall": 0.7959,
+      "Precision": 0.8306,
+      "OA": 0.9136,
+      "F1": 0.8129,
+      "IoU": 0.6848,
+      "Kappa": 0.7568
+    },
+    "model": "MambaBCD_Tiny",
+    "dataset": "SYSU-CD",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:13:56.234120",
+    "metrics": {
+      "Recall": 0.8031,
+      "Precision": 0.8611,
+      "OA": 0.9230,
+      "F1": 0.8311,
+      "IoU": 0.7110,
+      "Kappa": 0.7813
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "SYSU-CD",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:15:23.055098",
+    "metrics": {
+      "Recall": 0.9194,
+      "Precision": 0.9476,
+      "OA": 0.9952,
+      "F1": 0.9333,
+      "IoU": 0.8749,
+      "Kappa": 0.9308
+    },
+    "model": "MambaBCD_Tiny",
+    "dataset": "WHU",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:16:40.543445",
+    "metrics": {
+      "Recall": 0.9223,
+      "Precision": 0.9618,
+      "OA": 0.9958,
+      "F1": 0.9419,
+      "IoU": 0.8902,
+      "Kappa": 0.9398
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "WHU",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:19:24.997365",
+    "metrics": {
+      "Recall": 0.8726,
+      "Precision": 0.8882,
+      "OA": 0.9903,
+      "F1": 0.8804,
+      "IoU": 0.7863,
+      "Kappa": 0.8753
+    },
+    "model": "MambaBCD_Tiny",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:27:13.853147",
+    "metrics": {
+      "Recall": 0.8649,
+      "Precision": 0.8917,
+      "OA": 0.9902,
+      "F1": 0.8781,
+      "IoU": 0.7827,
+      "Kappa": 0.8730
+    },
+    "model": "MambaBCD_Small",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:37:38.971779",
+    "metrics": {
+      "OA": 0.9036,
+      "F1": 0.5532,
+      "mIoU": 0.7368,
+      "SeK": 0.2292
+    },
+    "model": "MambaSCD_Base",
+    "dataset": "SECOND",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:53:05.569608",
+    "metrics": {
+      "OA": 0.9044,
+      "F1": 0.5451,
+      "mIoU": 0.7333,
+      "SeK": 0.2208
+    },
+    "model": "MambaSCD_Tiny",
+    "dataset": "SECOND",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T13:45:30.000000",
+    "metrics": {
+      "OA": 0.8648,
+      "F1": 0.5572,
+      "mIoU": 0.7341,
+      "SeK": 0.2283
+    },
+    "model": "MambaSCD_Small",
+    "dataset": "SECOND",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T14:03:09.345890",
+    "metrics": {
+      "Recall": 0.9229,
+      "Precision": 0.9590,
+      "OA": 0.9957,
+      "F1": 0.9406,
+      "IoU": 0.8879,
+      "Kappa": 0.9384
+    },
+    "model": "MambaBCD_Small",
+    "dataset": "WHU",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T14:04:56.323227",
+    "metrics": {
+      "Recall": 0.7825,
+      "Precision": 0.8799,
+      "OA": 0.9235,
+      "F1": 0.8283,
+      "IoU": 0.7070,
+      "Kappa": 0.7794
+    },
+    "model": "MambaBCD_Small",
+    "dataset": "SYSU-CD",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-06T15:07:13.679509",
+    "metrics": {
+      "Recall": 0.8757,
+      "Precision": 0.8924,
+      "OA": 0.9906,
+      "F1": 0.8839,
+      "IoU": 0.7920,
+      "Kappa": 0.8791
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 0
+  }
+]

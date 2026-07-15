@@ -98,7 +98,7 @@ class FileManager:
 
     
     @staticmethod
-    def create_subset(source_dir, output_dir, test_list_path, num_images=500):
+    def create_subset(source_dir, output_dir, test_list_path, script_name, num_images=500):
         """
         Create a subset of images maintaining the GT/T1/T2 directory structure.
 
@@ -116,7 +116,10 @@ class FileManager:
             raise FileNotFoundError(f"Source directory not found: {source_path}")
 
         required_dirs = {'GT_CD', 'GT_T1', 'GT_T1_COLORED', 'GT_T2', 'GT_T2_COLORED', 'T1', 'T2'}
-        # required_dirs = {'GT', 'T1', 'T2'}
+        
+        if script_name == "infer_MambaBCD":
+            required_dirs = {'GT', 'T1', 'T2'}
+           
         for dir_name in required_dirs:
             dir_path = source_path / dir_name
             if not dir_path.exists() or not dir_path.is_dir():
@@ -124,6 +127,8 @@ class FileManager:
 
         # Get list of images from GT directory (skip macOS AppleDouble metadata files)
         gt_dir = source_path / 'GT_CD'
+        if script_name == "infer_MambaBCD":
+            gt_dir = source_path / "GT"
         image_files = sorted([f.name for f in gt_dir.iterdir() if f.is_file() and not f.name.startswith('._')])
 
         if len(image_files) < num_images:

@@ -1,0 +1,321 @@
+[
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:15:39.232764",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:15:39.300230",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 1
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:15:39.366684",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 2
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:15:39.426280",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 3
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:15:39.486244",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 4
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:28:26.762136",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:28:27.620674",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 1
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:28:28.465241",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 2
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:28:29.310990",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 3
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:28:30.160980",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 4
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:29:18.336891",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:29:19.175768",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 1
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:29:32.380345",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:29:33.244447",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 1
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:32:21.482567",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:33:05.851941",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:33:26.584394",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:33:28.041725",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 1
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:35:50.368466",
+    "metrics": {
+      "Recall": 0.6179,
+      "Precision": 0.8256,
+      "OA": 0.9791,
+      "F1": 0.7068,
+      "IoU": 0.5465,
+      "Kappa": 0.6962
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:48:42.865654",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:48:43.707341",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 1
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:48:44.556623",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 2
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:48:58.100042",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:49:13.072748",
+    "success": false,
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "error": "Failed to parse metrics",
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T09:54:40.063034",
+    "metrics": {
+      "Recall": 0.6179,
+      "Precision": 0.8256,
+      "OA": 0.9791,
+      "F1": 0.7068,
+      "IoU": 0.5465,
+      "Kappa": 0.6962
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T10:26:20.571324",
+    "metrics": {
+      "Recall": 0.6179,
+      "Precision": 0.8256,
+      "OA": 0.9791,
+      "F1": 0.7068,
+      "IoU": 0.5465,
+      "Kappa": 0.6962
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T10:34:33.396966",
+    "metrics": {
+      "Recall": 0.6179,
+      "Precision": 0.8256,
+      "OA": 0.9791,
+      "F1": 0.7068,
+      "IoU": 0.5465,
+      "Kappa": 0.6962
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 0
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T10:36:41.447318",
+    "metrics": {
+      "Recall": 0.6179,
+      "Precision": 0.8256,
+      "OA": 0.9791,
+      "F1": 0.7068,
+      "IoU": 0.5465,
+      "Kappa": 0.6962
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 1
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T10:38:49.431213",
+    "metrics": {
+      "Recall": 0.6179,
+      "Precision": 0.8256,
+      "OA": 0.9791,
+      "F1": 0.7068,
+      "IoU": 0.5465,
+      "Kappa": 0.6962
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 2
+  },
+  {
+    "run": 1,
+    "timestamp": "2026-07-15T10:40:57.373095",
+    "metrics": {
+      "Recall": 0.6179,
+      "Precision": 0.8256,
+      "OA": 0.9791,
+      "F1": 0.7068,
+      "IoU": 0.5465,
+      "Kappa": 0.6962
+    },
+    "model": "MambaBCD_Base",
+    "dataset": "LEVIR-CD+",
+    "success": true,
+    "batch": 3
+  }
+]

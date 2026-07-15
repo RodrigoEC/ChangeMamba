@@ -22,23 +22,15 @@ Devido ao uso de algumas dependências do código, é recomendado que ele seja e
 
 
 ```bash
+
+python3 -m venv venv
+
+source venv/bin/activate
+
 # 1. Clone e ambiente
-git clone https://github.com/RodrigoEC/ChangeMamba.git
-cd ChangeMamba
+pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
 
-conda create -n changemamba python=3.8
-conda activate changemamba
-
-# 2. Dependências (versões FIXADAS)
 pip install -r requirements.txt
-
-# 3. Kernel customizado
-cd changedetection/kernels/selective_scan
-pip install .
-cd ../../..
-
-# 4. Validação
-python -c "import torch; print(torch.__version__)"
 
 ```
 <!-- 
@@ -51,13 +43,9 @@ pip install mmdet==3.3.0 mmsegmentation==1.2.2 mmpretrain==1.2.0
 
 ### `B. Download dos pesos pré-treinados utilizados na reprodução`
 
-Faça o Download de todos os pesos pré-treinados utilizados nos experimentos. Todos eles estão no [zenodo](https://zenodo.org/records/14037769). Uma vez instalados, coloque eles no seguinte caminho:
+Faça o Download de todos os pesos pré-treinados utilizados nos experimentos. Todos eles estão no [zenodo](https://zenodo.org/records/14037769).
 
-```bash
-project_path/ChangeMamba/pretrained_weight/
-```
-
-Os pesos utilizados na reprodução feita são os seguintes
+Os pesos utilizados na reprodução feita são os seguintes:
 
 **Detecção de Mudança Binária**
 - MambaBCD_Base_LEVIRCD+_F1_0.8823.pth

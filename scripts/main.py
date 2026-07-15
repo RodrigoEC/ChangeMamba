@@ -85,8 +85,8 @@ class MainClient:
             metrics = self._parse_inference_output(output)
 
             if metrics:
-                print(f"✓ Run {run_num} completed successfully")
-                print(f"  Metrics: {metrics}")
+                print(f"Run {run_num} completed successfully")
+                print(f"Metrics: {metrics}")
 
                 return {
                     'run': run_num,
@@ -137,6 +137,7 @@ class MainClient:
                     self.config.data_path,
                     self.config.batch_output_dir,
                     self.config.data_list_path,
+                    self.config.script_name,
                     self.config.images_per_batch,
                 )
                 
@@ -155,8 +156,10 @@ class MainClient:
                 summary = self.run_inference(i + 1, test_dataset_path, self.config.data_list_path)
                 summary["batch"] = batch_index
                 res.append(summary)
+                
+            output_json = "summary-batches" if use_batch else "summary"
         
-            FileManager.append_results_to_json(res, "./summary.json")
+            FileManager.append_results_to_json(res, f"./{output_json}.json")
             
     
             
@@ -265,8 +268,8 @@ if __name__ == "__main__":
         #     "script_name": "infer_MambaBCD",
         # },
         { 
-            "data_path": "/home/cilas/rodrigo/ChangeMamba/changedetection/datasets/data_name_list/LEVIR-CD+/test",
-            "data_list_path": "/home/cilas/rodrigo/ChangeMamba/changedetection/datasets/data_name_list/LEVIR-CD+/test_set.txt",
+            "data_path": "/home/cilas/rodrigo/new-change/changedetection/datasets/data_name_list/LEVIR-CD+/test",
+            "data_list_path": "/home/cilas/rodrigo/new-change/changedetection/datasets/data_name_list/LEVIR-CD+/test_set.txt",
             "dataset": "LEVIR-CD+",
             "model":  "MambaBCD_Base",
             "model_path": "/home/cilas/rodrigo/models/MambaBCD_Base_LEVIRCD+_F1_0.8823.pth",
@@ -290,4 +293,4 @@ if __name__ == "__main__":
         )
         client = MainClient(config=config)
     
-        client.run(use_batch=False)
+        client.run(use_batch=True)
